@@ -1,5 +1,8 @@
 package metier;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Ville
 {
 	private static int         nbVille=0;
@@ -8,7 +11,7 @@ public class Ville
 	private        String      nom;
 	private        int         x, y;
 	
-	//private        List<Route> lstRoute;
+	private        List<Route> lstRoute;
 
 	Ville(String nom, int x, int y)
 	{
@@ -16,7 +19,7 @@ public class Ville
 		this.nom      = nom;
 		this.x        = x;
 		this.y        = y;
-		//this.lstRoute = new ArrayList<Route>();
+		this.lstRoute = new ArrayList<Route>();
 	}
 
 	protected void   setX(int x) { this.x = x     ;}

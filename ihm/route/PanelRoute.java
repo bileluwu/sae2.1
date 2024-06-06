@@ -72,7 +72,7 @@ public class PanelRoute extends JPanel implements ActionListener
 				if (nouvelleRoute == null)
 				{
 					JOptionPane.showMessageDialog(this, "Un problème est survenu lors de la création de la route\n" + 
-												  "Rappel :\nUne ville ne peut pas être la ville de départ et la ville d'arrivée.\n" + "Si 2 villes sont déjà connectée vous ne pouvez pas creer de nouveau chemin\n"+
+												  "Rappel :\nUne ville ne peut pas être la ville de départ et la ville d'arrivée.\n" + "Si 2 villes sont déjà connectées vous ne pouvez pas créer de nouveau chemin\n"+
 												  "Une route peut avoir comme tronçon maximal 10 et comme tronçon minimum 0", "Erreur",JOptionPane.ERROR_MESSAGE);
 					return;
 				}
