@@ -66,8 +66,8 @@ public class PanelVille extends JPanel implements ActionListener
 					JOptionPane.showMessageDialog(this, "Un problème s'est produit lors de la création de la ville\n" +
 														"Rappel: Deux villes ne peuvent pas voir le meme nom\n" +
 													    "Les coordonnées de la ville doivent etre dans ces valeurs :\n" +
-														(int)(this.ctrl.getReseauSize().getWidth ()- 40) + " pour le x et\n" +
-														(int)(this.ctrl.getReseauSize().getHeight()- 40) + " pour le y", 
+														"Entre 0 et "+((int)(this.ctrl.getReseauSize().getWidth ()- 40)-1) + " pour le x et\n" +
+														"Entre 0 et "+((int)(this.ctrl.getReseauSize().getHeight()- 40)-1) + " pour le y", 
 														"Erreur", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
