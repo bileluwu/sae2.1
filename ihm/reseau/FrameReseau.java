@@ -13,6 +13,7 @@ public class FrameReseau extends JFrame implements ActionListener
 {
 	private Controleur ctrl;
 	private JMenuItem menuFichierSauvergarder;
+	private PanelReseau panelReseau;
 
 	public FrameReseau(Controleur ctrl)
 	{
@@ -30,6 +31,8 @@ public class FrameReseau extends JFrame implements ActionListener
 
 		JMenu menuFichier = new JMenu("Fichier");
 
+		this.panelReseau = new PanelReseau(this.ctrl);
+
 		this.menuFichierSauvergarder = new JMenuItem("Sauvegarder");
 
 		menuFichier.add(this.menuFichierSauvergarder);
@@ -42,8 +45,7 @@ public class FrameReseau extends JFrame implements ActionListener
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-		//this.add(new PanelReseau());
-		//this.pack();
+		this.add(this.panelReseau, BorderLayout.CENTER);
 	}
 
 	public void actionPerformed(ActionEvent e)

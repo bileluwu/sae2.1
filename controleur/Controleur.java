@@ -27,13 +27,15 @@ public class Controleur
 	
 	public Controleur()
 	{
+
 		this.frameReseau = new FrameReseau(this);
 		this.frameVille = new FrameVille(this);
 		this.frameRoute = new FrameRoute(this);
-		
+
 		this.initTab();
 		this.frameRoute.rafraichir();
 		this.frameVille.rafraichir();
+		this.frameReseau.repaint();
 	}
 
 	public List<Ville> getVilles       () { return new ArrayList<Ville>(lstVilles); }
@@ -77,7 +79,7 @@ public class Controleur
 						nom = dec.getString(1);
 						x   = dec.getInt(2);
 						y   = dec.getInt(3);
-						Ville nouvelleVille = Factory.CreerVille( nom, x, y , this.getVilles());
+						Ville nouvelleVille = Factory.CreerVille( nom, x, y , this.getVilles(), this.getReseauSize());
 						if (nouvelleVille != null)
 						{
 							this.lstVilles.add (nouvelleVille);
@@ -136,17 +138,17 @@ public class Controleur
 
 	public void modifier()
 	{
-		try
-		{
-			PrintWriter pw = new PrintWriter(new FileOutputStream("../data/donnees.data"));
+		this.frameReseau.repaint();
+		this.frameVille.rafraichir();
+	}
 
-			for (Ville ville : lstVilles)
-				pw.println("V\t" + ville.getNom() + "\t" + ville.getX() + "\t" + ville.getY());
-			for (Route route : lstRoutesAvantSauvegarde)
-				pw.println("R\t" + route.getNbTroncons() + "\t" + route.getVilleDep().getNumero() + "\t"
-						+ route.getVilleArr().getNumero());
-			pw.close();
-		} catch (Exception e){ e.printStackTrace();}
+	public void deplacerVille(Ville v, int dx, int dy)
+	{
+
+		Factory.setX(v, v.getX() + dx, this.getReseauSize());
+		Factory.setY(v, v.getY() + dy, this.getReseauSize());
+		this.frameVille.rafraichir();
+
 	}
 
 	public void ajouter(Ville v)
@@ -154,12 +156,14 @@ public class Controleur
 		this.lstVilles.add(v);
 		this.ajouterCombo(v);
 		this.frameVille.rafraichir();
+		this.frameReseau.repaint();
 	}
 
 	public void ajouter(Route r)
 	{
 		this.lstRoutes.add(r);
 		this.frameRoute.rafraichir();
+		this.frameReseau.repaint();
 	}
 
 
@@ -182,11 +186,18 @@ public class Controleur
 		return null;
 	}
 
+	public Ville villeCliquer(int x, int y)
+	{
+		for (Ville ville : lstVilles) 
+			if (Math.sqrt(Math.pow(ville.getX() - x, 2) + Math.pow(ville.getY() - y, 2)) <= 15 / 2) return ville;
+		return null;
+	}
+
 	public boolean majX( int ligne, int val )
 	{
 		if(villeParCoord(val, this.lstVilles.get(ligne).getY( )) == null) 
 		{
-			this.lstVilles.get(ligne).setX(val);
+			Factory.setX(this.lstVilles.get(ligne), val, this.getReseauSize());
 			return true;
 		}
 
@@ -197,7 +208,7 @@ public class Controleur
 	{
 		if(villeParCoord(this.lstVilles.get(ligne).getX(), val ) == null) 
 		{
-			this.lstVilles.get(ligne).setY(val);
+			Factory.setY(this.lstVilles.get(ligne), val, this.getReseauSize());
 			return true;
 		}
 

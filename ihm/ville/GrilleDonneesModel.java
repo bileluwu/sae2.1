@@ -56,7 +56,7 @@ public class GrilleDonneesModel extends AbstractTableModel
 		if ( col == 2 )
 		{
 			bRet = this.ctrl.majX ( row, (int)value );
-			bRet = bRet && (int)value >= 0 && (int)value <= 1000;
+			bRet = bRet && (int)value >= 0 && (int)value <= this.ctrl.getReseauSize().getWidth()-17;
 			if ( bRet )
 			{
 				this.tabDonnees[row][col] = value;
@@ -67,7 +67,7 @@ public class GrilleDonneesModel extends AbstractTableModel
 		if ( col == 3 )
 		{
 			bRet = this.ctrl.majY ( row, (int)value );
-			bRet = bRet && (int)value >= 0 && (int)value <= 800;
+			bRet = bRet && (int)value >= 0 && (int)value <= this.ctrl.getReseauSize().getHeight()-63;
 			if ( bRet )
 			{
 				this.tabDonnees[row][col] = value;

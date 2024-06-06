@@ -1,5 +1,6 @@
 package metier;
 
+import java.awt.Dimension;
 import java.util.List;
 
 public abstract class Factory 
@@ -15,10 +16,10 @@ public abstract class Factory
 		return new Route(nbTroncons, depart, arrivee);
 	}
 
-	public static Ville CreerVille(String nom, int x, int y, List<Ville> lstVilles)
+	public static Ville CreerVille(String nom, int x, int y, List<Ville> lstVilles, Dimension dim)
 	{
-		if (x < 0 || x > 1000) return null;
-		if (y < 0 || y > 800 ) return null;
+		if (x < 0 || x > dim.getWidth ()-17) return null;
+		if (y < 0 || y > dim.getHeight()-63) return null;
 		for (Ville ville : lstVilles)
 		{
 			if (ville.getNom().equals(nom)            ) return null;
@@ -26,4 +27,17 @@ public abstract class Factory
 		}
 		return new Ville(nom, x, y);
 	}
+
+	public static void setX(Ville ville, int x, Dimension dim)
+	{
+		if (x < 0 || x > dim.getWidth ()-17) return;
+		ville.setX(x);
+	}
+
+	public static void setY(Ville ville, int y, Dimension dim)
+	{
+		if (y < 0 || y > dim.getHeight()-63) return;
+		ville.setY(y);
+	}
+
 }
