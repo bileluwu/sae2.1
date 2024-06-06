@@ -11,7 +11,10 @@ public abstract class Factory
 		if (depart == null || arrivee == null) return null;
 		if (depart == arrivee)                 return null;
 		for (Route route : lstRoutes)
+		{
 			if (route.getVilleDep() == depart && route.getVilleArr() == arrivee) return null;
+			if (route.getVilleDep() == arrivee && route.getVilleArr() == depart) return null;
+		}
 
 		return new Route(nbTroncons, depart, arrivee);
 	}
