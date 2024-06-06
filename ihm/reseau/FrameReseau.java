@@ -4,6 +4,8 @@ import controleur.Controleur;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java. awt. Toolkit;
+import java.awt.Dimension;
 
 import java.awt.BorderLayout;
 
@@ -17,7 +19,11 @@ public class FrameReseau extends JFrame implements ActionListener
 		this.setLayout(new BorderLayout());
 		this.ctrl = ctrl;
 		this.setTitle   ("Reseau Routier");
-		this.setSize    (400,300 );
+
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int height = (int)dimension.getHeight();
+		int width  = (int)dimension.getWidth();
+		this.setSize    ( width-100, (int)(height*0.66-50));
 		this.setLocation( 50, 50 );
 
 		JMenuBar menubMaBarre = new JMenuBar();

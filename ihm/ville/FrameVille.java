@@ -5,6 +5,8 @@ import controleur.Controleur;
 import javax.swing.*;
 
 import java.awt.BorderLayout;
+import java. awt. Toolkit;
+import java.awt.Dimension;
 
 public class FrameVille extends JFrame
 {
@@ -18,8 +20,11 @@ public class FrameVille extends JFrame
 		this.setLayout(new BorderLayout());
 		this.ctrl = ctrl;
 		this.setTitle   ( "Ville" );
-		this.setSize    ( 600,400 );
-		this.setLocation(  50, 500 );
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int height = (int)dimension.getHeight();
+		int width  = (int)dimension.getWidth();
+		this.setSize    ( (int)(width/2)-50,(int)(height*0.33)-50 );
+		this.setLocation(  50, ctrl.getReseauSize().height+50 );
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
 		this.panelVille = new PanelVille(this.ctrl);

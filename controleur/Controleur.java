@@ -6,6 +6,7 @@ import ihm.reseau.*;
 import metier.*;
 
 import java.util.Scanner;
+import java.awt.Dimension;
 import java.io.FileInputStream;
 import iut.algo.Decomposeur;
 import java.io.FileOutputStream;
@@ -26,9 +27,10 @@ public class Controleur
 	
 	public Controleur()
 	{
+		this.frameReseau = new FrameReseau(this);
 		this.frameVille = new FrameVille(this);
 		this.frameRoute = new FrameRoute(this);
-		this.frameReseau = new FrameReseau(this);
+		
 		this.initTab();
 		this.frameRoute.rafraichir();
 		this.frameVille.rafraichir();
@@ -201,6 +203,10 @@ public class Controleur
 
 		return false;
 	}
+
+	public Dimension getReseauSize() { return this.frameReseau.getSize(); }
+	public Dimension getVilleSize()  { return this.frameVille .getSize(); }
+	public Dimension getRouteSize()  { return this.frameRoute .getSize(); } 
 
 	public static void main(String[] args) {
 		new Controleur();

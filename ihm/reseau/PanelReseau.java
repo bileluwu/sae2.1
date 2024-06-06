@@ -40,7 +40,7 @@ public class PanelReseau extends JPanel
 		for(int i=0; i<this.ctrl.getNbRoute();i++)
 		{
 			route = this.ctrl.getRoute(i);
-			for(int i=0; i<route.getNbTroncons(); i++)
+			for(int j=0; j<route.getNbTroncons(); j++)
 				g2.drawLine(route.getVilleDep().getX(), route.getVilleDep().getY()/route.getNbTroncons(), route.getVilleArr().getX(), route.getVilleArr().getY()/route.getNbTroncons());
 		}
 	}

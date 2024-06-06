@@ -4,6 +4,8 @@ import controleur.Controleur;
 import metier.Ville;
 
 import java.awt.BorderLayout;
+import java. awt. Toolkit;
+import java.awt.Dimension;
 
 import javax.swing.*;
 public class FrameRoute extends JFrame
@@ -19,8 +21,11 @@ public class FrameRoute extends JFrame
 		this.ctrl = ctrl;
 
 		this.setTitle   ( "Route" );
-		this.setSize    ( 600,400 );
-		this.setLocation(  1000, 500 );
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int height = (int)dimension.getHeight();
+		int width  = (int)dimension.getWidth();
+		this.setSize    ( (int)(width/2)-50,(int)(height*0.33)-50 );
+		this.setLocation(  50+ctrl.getVilleSize().width, ctrl.getReseauSize().height+50 );
 		this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
 		this.panelRoute = new PanelRoute(this.ctrl);
