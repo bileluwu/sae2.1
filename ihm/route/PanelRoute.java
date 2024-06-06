@@ -64,21 +64,25 @@ public class PanelRoute extends JPanel implements ActionListener
 
 	public void actionPerformed(ActionEvent e)
 	{
-		try
+		if(e.getSource() == this.btnAjouter)
 		{
-			if(e.getSource() == this.btnAjouter)
+			try
 			{
 				Route nouvelleRoute = Factory.CreerRoute(Integer.parseInt(this.txtTroncons.getText()),this.ctrl.villeParNom((String)this.comboDepart.getSelectedItem()),this.ctrl.villeParNom((String)this.comboArrivee.getSelectedItem()), this.ctrl.getRoutes());
-				if (nouvelleRoute != null)
+				if (nouvelleRoute == null)
 				{
-					this.ctrl.ajouter(nouvelleRoute);
-					this.txtTroncons.setText("");
+					JOptionPane.showMessageDialog(this, "Un problème est survenu lors de la création de la route\n" + 
+												  "Rappel :\nUne ville ne peut pas être la ville de départ et la ville d'arrivée.\n" +
+												  "Une route peut avoir comme tronçcon maximal 10 et comme tronçon minimum 0", "Erreur",JOptionPane.ERROR_MESSAGE);
+					return;
 				}
+				this.ctrl.ajouter(nouvelleRoute);
+				this.txtTroncons.setText("");
 			}
-		}
-		catch(NumberFormatException ex)
-		{
+			catch(NumberFormatException ex)
+			{
 				JOptionPane.showMessageDialog(this, "Veuillez entrer des valeurs numériques valides pour les coordonnées.", "Erreur", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 	}
 	
